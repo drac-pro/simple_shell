@@ -29,14 +29,14 @@ while (1)
 		else if (child_pid == 0 && num_words == 1)
 		{
 			execve(command[0], command, environ);
-			perror("./shell: No such file or directory");
+			perror("./shell");
 			exit(EXIT_SUCCESS);
 		}
 		else
 		{
 			waitpid(child_pid, &status, 0);
 			if (num_words > 1)
-				perror("./shell: No such file or directory");
+				perror("./shell");
 		}
 		while (command[i++] != NULL)
 			free(command[i]);
