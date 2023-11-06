@@ -11,7 +11,6 @@
 extern char **environ;
 
 char **_strtok(char *input, int *word_count);
-char *_strdup(char *str);
-
+char *_strdup(const char *str);
 
 #endif /* SHELL_H */
