@@ -10,7 +10,7 @@
 
 extern char **environ;
 
-char **_strtok(const char *input, int *word_count);
+char **_strtok(char *input, int *word_count);
 char *_strdup(char *str);
 
 
