@@ -8,6 +8,7 @@
 pid_t fork_process(void)
 {
 	pid_t child_pid = fork();
+
 	if (child_pid == -1)
 		exit(EXIT_FAILURE);
 	return (child_pid);
@@ -21,8 +22,11 @@ pid_t fork_process(void)
  */
 void exec_execve(char **command)
 {
-	execve(command[0], command, environ);
-	perror("./shell");
+	if (command[1] == NULL)
+	{
+		execve(command[0], command, environ);
+		perror("./shell");
+	}
 	exit(EXIT_SUCCESS);
 }
 /**
@@ -38,5 +42,5 @@ void exec_wait(pid_t child_pid, int num_words, int *status)
 {
 	waitpid(child_pid, status, 0);
 	if (num_words > 1)
-		perror("./shell");
+		write(2, "./shell: No such file or directory\n", 35);
 }

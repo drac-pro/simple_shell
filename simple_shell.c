@@ -12,7 +12,7 @@ int main(void)
 while (1)
 {
 	int num_words;
-	char* input = _getline();
+	char *input = _getline();
 
 	if (input)
 	{
@@ -21,7 +21,7 @@ while (1)
 
 		command = input_token(input, &num_words);
 		child_pid = fork_process();
-		if (child_pid == 0 && num_words == 1)
+		if (child_pid == 0)
 			exec_execve(command);
 		else
 			exec_wait(child_pid, num_words, &status);
