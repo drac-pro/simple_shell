@@ -7,44 +7,35 @@
  */
 int main(void)
 {
+	int status = 0, i = 0;
+
 while (1)
 {
-	int i = 0, num_words, status;
-	char *line = NULL;
-	size_t len = 0;
-	ssize_t char_read;
+	int num_words;
+	char* input = _getline();
 
-	write(STDOUT_FILENO, "#cisfun$ ", 9);
-	char_read = getline(&line, &len, stdin);
-	if (char_read != -1)
+	if (input)
 	{
 		char **command;
 		pid_t child_pid;
 
-		if (char_read > 0 && line[char_read - 1] == '\n')
-			line[char_read - 1] = '\0';
-		command = _strtok(line, &num_words), child_pid = fork();
-		if (child_pid == -1)
-			exit(EXIT_FAILURE);
-		else if (child_pid == 0 && num_words == 1)
-		{
-			execve(command[0], command, environ);
-			perror("./shell");
-			exit(EXIT_SUCCESS);
-		}
+		command = input_token(input, &num_words);
+		child_pid = fork_process();
+		if (child_pid == 0 && num_words == 1)
+			exec_execve(command);
 		else
-		{
-			waitpid(child_pid, &status, 0);
-			if (num_words > 1)
-				perror("./shell");
-		}
-		while (command[i++] != NULL)
-			free(command[i]);
+			exec_wait(child_pid, num_words, &status);
+		while (command[i] != NULL)
+			free(command[i++]);
 		free(command);
-		free(line);
+		free(input);
 	}
 	else
-		exit(EXIT_FAILURE);
+	{
+		if (isatty(STDIN_FILENO))
+			write(STDOUT_FILENO, "\n", 1);
+		return (status);
+	}
 }
 return (0);
 }

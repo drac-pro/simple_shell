@@ -1,17 +1,17 @@
 #include "shell.h"
 
 /**
- * _strtok - splits a string into words and store them in an array of words
+ * input_token - splits a string into words and store them in an array of words
  *
  * @input: pointer to input string
  * @word_count: pointer to the number of words
  *
  * Return: pointer to an array of words
  */
-char **_strtok(char *input, int *word_count)
+char **input_token(char *input, int *word_count)
 {
 	char **command = NULL, *ptr = input;
-	const char *token, *delimiter = " ";
+	const char *token, *delimiter = " \t\n";
 	int count = 0;
 
 	token = strtok(ptr, delimiter);
