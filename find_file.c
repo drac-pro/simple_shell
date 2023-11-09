@@ -8,12 +8,10 @@
  */
 char *find_command(const char *filename)
 {
-	char *path, *token;
-	char *path_copy;
+	char *path, *token, *path_copy;
 
 	if (!filename)
 		return (NULL);
-
 	if (filename[0] == '/')
 	{
 		if (access(filename, F_OK) == 0)
@@ -27,12 +25,10 @@ char *find_command(const char *filename)
 			return (NULL);
 		}
 	}
-
 	path = getenv("PATH");
 	path_copy = _strdup(path);
 
 	token = strtok(path_copy, ":");
-
 	while (token != NULL)
 	{
 		char filepath[1024];
@@ -45,7 +41,6 @@ char *find_command(const char *filename)
 			return (_strdup(filepath));
 		}
 		token = strtok(NULL, ":");
-
 	}
 	free(path_copy);
 	return (NULL);
