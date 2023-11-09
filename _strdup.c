@@ -24,7 +24,7 @@ char *_strdup(const char *str)
 
 	for (i = 0; i < size; i++)
 		ptr[i] = str[i];
-	ptr[size + 1] = '\0';
+	ptr[size] = '\0';
 
 	return (ptr);
 }

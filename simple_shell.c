@@ -7,7 +7,7 @@
  */
 int main(void)
 {
-	int status = 0, i = 0;
+	int status = 0;
 
 while (1)
 {
@@ -20,15 +20,13 @@ while (1)
 		pid_t child_pid;
 
 		command = input_token(input, &num_words);
+		_free(&input);
 		child_pid = fork_process();
 		if (child_pid == 0)
 			exec_execve(command);
 		else
-			exec_wait(child_pid, num_words, &status);
-		while (command[i] != NULL)
-			free(command[i++]);
-		free(command);
-		free(input);
+			exec_wait(child_pid, &status);
+		free_command(command);
 	}
 	else
 	{

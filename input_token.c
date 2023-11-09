@@ -10,20 +10,22 @@
  */
 char **input_token(char *input, int *word_count)
 {
-	char **command = NULL, *ptr = input;
-	const char *token, *delimiter = " \t\n";
-	int count = 0;
+	char **command = NULL, *ptr = _strdup(input), *token;
+	const char *delimiter = " \t\n";
+	int i = 0, size = 0;
 
 	token = strtok(ptr, delimiter);
-	while (token != NULL)
+	while (token)
+		size++, token = strtok(NULL, delimiter);
+	command = malloc(sizeof(char *) * (size + 1));
+	token = strtok(input, delimiter);
+	while (token)
 	{
-		command = realloc(command, (count + 1) * sizeof(char *));
-		command[count] = _strdup(token);
-		count++;
+		command[i] = _strdup(token), i++;
 		token = strtok(NULL, delimiter);
 	}
-	command = realloc(command, (count + 1) * sizeof(char *));
-	command[count] = NULL;
-	*word_count = count;
+	command[size] = NULL;
+	*word_count = size;
+	_free(&ptr);
 	return (command);
 }

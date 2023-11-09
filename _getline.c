@@ -16,7 +16,7 @@ char *_getline(void)
 	char_read = getline(&line, &len, stdin);
 	if (char_read == -1)
 	{
-		free(line);
+		_free(&line);
 		return (NULL);
 	}
 	if (char_read > 0 && line[char_read - 1] == '\n')
