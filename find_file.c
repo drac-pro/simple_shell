@@ -8,17 +8,14 @@
  */
 char *find_command(const char *filename)
 {
-	char *path, *token, *path_copy;
+	char *path, *token, *path_copy, *filepath;
 
 	if (!filename)
 		return (NULL);
 	if (filename[0] == '/')
 	{
 		if (access(filename, F_OK) == 0)
-		{
-			return (_strdup(filename));
-
-		}
+			return (filename);
 		else
 		{
 			perror("./shell");
@@ -26,22 +23,27 @@ char *find_command(const char *filename)
 		}
 	}
 	path = getenv("PATH");
-	path_copy = _strdup(path);
-
-	token = strtok(path_copy, ":");
-	while (token != NULL)
+	token = strtok(path, ":");
+	while (token)
 	{
-		char filepath[1024];
-
-		snprintf(filepath, sizeof(filepath), "%s/%s", token, filename);
+		filepath = malloc(_strlen(token) + _strlen(filename) + 2);
+		if(!filepath)
+		{
+			free(path);
+			return(NULL);
+		}
+		_strcpy(filepath, token);
+		_strcat(filepath, "/");
+		_strcat(filepath, filename);
 
 		if (access(filepath, F_OK) == 0)
 		{
-			free(path_copy);
-			return (_strdup(filepath));
+			free(path);
+			return (filepath);
 		}
+		free(filepath);
 		token = strtok(NULL, ":");
 	}
-	free(path_copy);
+	free(path);
 	return (NULL);
 }
