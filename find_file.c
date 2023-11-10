@@ -6,16 +6,16 @@
  *
  * Return: the full file PATH if it exist. Otherwise NULL.
  */
-char *find_command(const char *filename)
+char *find_command(char *filename)
 {
-	char *path, *token, *path_copy, *filepath;
+	char *path, *token, *filepath, *path_copy;
 
 	if (!filename)
 		return (NULL);
 	if (filename[0] == '/')
 	{
 		if (access(filename, F_OK) == 0)
-			return (filename);
+			return (_strdup(filename));
 		else
 		{
 			perror("./shell");
@@ -23,7 +23,8 @@ char *find_command(const char *filename)
 		}
 	}
 	path = getenv("PATH");
-	token = strtok(path, ":");
+	path_copy = _strdup(path);
+	token = strtok(path_copy, ":");
 	while (token)
 	{
 		filepath = malloc(_strlen(token) + _strlen(filename) + 2);
@@ -38,12 +39,12 @@ char *find_command(const char *filename)
 
 		if (access(filepath, F_OK) == 0)
 		{
-			free(path);
+			free(path_copy);
 			return (filepath);
 		}
 		free(filepath);
 		token = strtok(NULL, ":");
 	}
-	free(path);
+	free(path_copy);
 	return (NULL);
 }

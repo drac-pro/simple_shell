@@ -21,6 +21,13 @@ while (1)
 
 		command = input_token(input, &num_words);
 		_free(&input);
+		command[0] = find_command(command[0]);
+		if (!command[0])
+		{
+			free_command(command);
+			write(2, ".shell: No such file or directory\n", 34);
+			continue;
+		}
 		child_pid = fork_process();
 		if (child_pid == 0)
 			exec_execve(command);
