@@ -24,27 +24,23 @@ char *_strcpy(char *dest, char *src)
 	return (ptr);
 }
 /**
- * *_strncat - This function appends the src string to the dest string
+ * *_strcat - This function appends the src string to the dest string
  * @dest: first pointer that points to char.
  * @src: second pointer that points to char.
- * @n: the number of bytes.
  *
  * Return: ptr.
  */
-char *_strncat(char *dest, char *src, int n)
+char *_strcat(char *dest, char *src)
 {
 	int i;
 	char *ptr = dest;
 	int dest_len = 0;
 
-	while (*dest != '\0')
-		dest++;
-
-	for (i = 0; src[i] != '\0' && n > 0; i++, n--)
+	while (dest[dest_len] != '\0')
+		dest_len++;
+	for (i = 0; src[i] != '\0'; i++)
 		dest[dest_len++] = src[i];
-
 	dest[dest_len] = '\0';
-
 	return (ptr);
 }
 /**
