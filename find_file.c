@@ -17,13 +17,9 @@ char *find_command(char *filename)
 		if (access(filename, F_OK) == 0)
 			return (_strdup(filename));
 		else
-		{
-			perror("./shell");
 			return (NULL);
-		}
 	}
-	path = getenv("PATH");
-	path_copy = _strdup(path);
+	path = getenv("PATH"), path_copy = _strdup(path);
 	token = strtok(path_copy, ":");
 	while (token)
 	{

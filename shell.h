@@ -9,10 +9,13 @@
 #include <sys/types.h>
 
 extern char **environ;
-
+/**
 pid_t fork_process(void);
 void exec_execve(char **command);
 void exec_wait(pid_t child_pid, int *status);
+*/
+
+void execute(char **command);
 
 char **input_token(char *input, int *word_count);
 char *_strdup(const char *str);
@@ -21,7 +24,6 @@ char *find_command(char *filename);
 char *_strcpy(char *dest, char *src);
 char *_strcat(char *dest, char *src);
 int _strlen(char *s);
-int _strcmp(char *s1, char *s2);
 
 /*frees*/
 void _free(char **str);

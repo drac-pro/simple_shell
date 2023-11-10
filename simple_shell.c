@@ -8,39 +8,25 @@
 int main(void)
 {
 	int status = 0;
+	char *input;
 
-while (1)
+while ((input = _getline()) != NULL)
 {
 	int num_words;
-	char *input = _getline();
+	char **command;
 
-	if (input)
+	command = input_token(input, &num_words);
+	if (command[0] == NULL)
 	{
-		char **command;
-		pid_t child_pid;
-
-		command = input_token(input, &num_words);
 		_free(&input);
-		command[0] = find_command(command[0]);
-		if (!command[0])
-		{
-			free_command(command);
-			write(2, ".shell: No such file or directory\n", 34);
-			continue;
-		}
-		child_pid = fork_process();
-		if (child_pid == 0)
-			exec_execve(command);
-		else
-			exec_wait(child_pid, &status);
 		free_command(command);
+		continue;
 	}
-	else
-	{
-		if (isatty(STDIN_FILENO))
-			write(STDOUT_FILENO, "\n", 1);
-		return (status);
-	}
+	execute(command);
+	free_command(command);
 }
-return (0);
+if (isatty(STDIN_FILENO) && !input)
+	write(STDOUT_FILENO, "\n", 1);
+_free(&input);
+return (status);
 }
