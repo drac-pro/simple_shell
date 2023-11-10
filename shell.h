@@ -17,7 +17,7 @@ void exec_wait(pid_t child_pid, int *status);
 char **input_token(char *input, int *word_count);
 char *_strdup(const char *str);
 char *_getline(void);
-char *find_command(const char *filename);
+char *find_command(char *filename);
 char *_strcpy(char *dest, char *src);
 char *_strcat(char *dest, char *src);
 int _strlen(char *s);
