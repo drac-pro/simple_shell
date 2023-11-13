@@ -10,7 +10,7 @@
  */
 char **input_token(char *input, int *word_count)
 {
-	char **command = NULL, *ptr = _strdup(input), *token;
+	char **command = NULL, *ptr = (char *)_strdup(input), *token;
 	const char *delimiter = " \t\n";
 	int i = 0, size = 0;
 
@@ -21,11 +21,11 @@ char **input_token(char *input, int *word_count)
 	token = strtok(input, delimiter);
 	while (token)
 	{
-		command[i] = _strdup(token), i++;
+		command[i] = (char *)_strdup(token), i++;
 		token = strtok(NULL, delimiter);
 	}
 	command[size] = NULL;
 	*word_count = size;
-	_free(&ptr);
+	free(ptr);
 	return (command);
 }
