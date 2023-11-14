@@ -12,7 +12,7 @@ int main(void)
 
 while ((input = _getline()) != NULL)
 {
-	int num_words;
+	int num_words, exec_flag;
 	char **command;
 
 	command = input_token(input, &num_words);
@@ -23,7 +23,9 @@ while ((input = _getline()) != NULL)
 		continue;
 	}
 	_free(&input);
-	execute(command);
+	exec_flag = exec_builtin(command);
+	if (exec_flag == 1)
+		execute(command);
 	free_command(command);
 }
 if (isatty(STDIN_FILENO) && !input)

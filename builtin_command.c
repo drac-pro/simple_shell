@@ -3,7 +3,7 @@
 /**
  * exitShell - function to terminate the program.
  */
-void exitShell(char **command)
+void exit_shell(char **command)
 {
 	free_command(command);
 	exit(EXIT_SUCCESS);
@@ -11,12 +11,14 @@ void exitShell(char **command)
 /**
  * print_env - built in function to print environment 
  */
-void print_env(void)
+void print_env(char **command)
 {
 	char **env = environ;
+	(void)command;
+
 	while (*env != NULL)
 	{
-		write(STDOUT_FILENO, *env, _strlen(*env));
+		write(STDOUT_FILENO, *env, strlen(*env));
 		write(STDOUT_FILENO, "\n", 1);
 		env++;
 	}
