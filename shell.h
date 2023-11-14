@@ -24,6 +24,9 @@ char *find_command(char *filename);
 char *_strcpy(char *dest, char *src);
 char *_strcat(char *dest, char *src);
 int _strlen(char *s);
+int _strcmp(char *s1, char *s2);
+void exitShell(char **command);
+void print_env(void);
 
 /*frees*/
 void _free(char **str);

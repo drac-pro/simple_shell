@@ -5,6 +5,13 @@ void execute(char **command)
 	pid_t child;
 	int status;
 
+	if (_strcmp(command[0], "exit") == 0)
+	{
+		exitShell(command);
+		return;
+	}
+	print_env();
+
 	command[0] = find_command(command[0]);
 	if (!command[0])
 	{
