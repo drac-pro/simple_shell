@@ -1,5 +1,9 @@
 #include "shell.h"
 
+/**
+ * execute - Function to execute executable commands
+ * @command: Double pointer to the array of commands
+ */
 void execute(char **command)
 {
 	pid_t child;
@@ -30,7 +34,12 @@ void execute(char **command)
 	} while (WIFEXITED(status) == 0 && WIFSIGNALED(status) == 0);
 	}
 }
-
+/**
+ * exec_builtin - Function to implement the builtin commands
+ * @command: Double pointer to the array of commands
+ *
+ * Return: 0 if successful, otherwise 1.
+ */
 int exec_builtin(char **command)
 {
 	int i;
