@@ -22,6 +22,7 @@ while ((input = _getline()) != NULL)
 		free_command(command);
 		continue;
 	}
+	_free(&input);
 	execute(command);
 	free_command(command);
 }
