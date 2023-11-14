@@ -1,5 +1,12 @@
 #include "shell.h"
 
+/**
+ * execute - execute executable commands
+ *
+ * @command: pointer to commands
+ *
+ * Return: void
+ */
 void execute(char **command)
 {
 	pid_t child;
@@ -30,7 +37,13 @@ void execute(char **command)
 	} while (WIFEXITED(status) == 0 && WIFSIGNALED(status) == 0);
 	}
 }
-
+/**
+ * exec_builtin - executes buildin commands
+ *
+ * @command: commands to be executed
+ *
+ * Return: 0 if builtin or 1 if not
+ */
 int exec_builtin(char **command)
 {
 	int i;

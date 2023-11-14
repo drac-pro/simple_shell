@@ -1,7 +1,11 @@
 #include "shell.h"
 
 /**
- * exitShell - function to terminate the program.
+ * exit_shell - function to terminate the program
+ *
+ * @command: command to be executed
+ *
+ * Return: void
  */
 void exit_shell(char **command)
 {
@@ -9,7 +13,11 @@ void exit_shell(char **command)
 	exit(EXIT_SUCCESS);
 }
 /**
- * print_env - built in function to print environment 
+ * print_env - built in function to print environment
+ *
+ * @command: command to be executed
+ *
+ * Return: void
  */
 void print_env(char **command)
 {

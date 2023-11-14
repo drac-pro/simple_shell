@@ -8,6 +8,12 @@
 #include <sys/wait.h>
 #include <sys/types.h>
 
+/**
+ * struct builtin_commands - buildin command struct
+ *
+ * @cmd: builtin command name
+ * @f: pointer builtin command function
+ */
 typedef struct builtin_commands
 {
 	char *cmd;

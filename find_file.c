@@ -24,10 +24,10 @@ char *find_command(char *filename)
 	while (token)
 	{
 		filepath = malloc(_strlen(token) + _strlen(filename) + 2);
-		if(!filepath)
+		if (!filepath)
 		{
 			free(path);
-			return(NULL);
+			return (NULL);
 		}
 		_strcpy(filepath, token);
 		_strcat(filepath, "/");
