@@ -12,7 +12,7 @@ char *_getline(void)
 	ssize_t char_read;
 
 	if (isatty(STDIN_FILENO))
-		write(STDOUT_FILENO, "#cisfun$ ", 9);
+		write(STDOUT_FILENO, "($) ", 4);
 	char_read = getline(&line, &len, stdin);
 	if (char_read == -1)
 	{
