@@ -1,11 +1,16 @@
 #include "shell.h"
 
 /**
+<<<<<<< HEAD
  * execute - execute executable commands
  *
  * @command: pointer to commands
  *
  * Return: void
+=======
+ * execute - Function to execute executable commands
+ * @command: Double pointer to the array of commands
+>>>>>>> 2eb0d84bceca5d7d0f2c14f81f8f48668b70d7aa
  */
 void execute(char **command)
 {
@@ -38,11 +43,18 @@ void execute(char **command)
 	}
 }
 /**
+<<<<<<< HEAD
  * exec_builtin - executes buildin commands
  *
  * @command: commands to be executed
  *
  * Return: 0 if builtin or 1 if not
+=======
+ * exec_builtin - Function to implement the builtin commands
+ * @command: Double pointer to the array of commands
+ *
+ * Return: 0 if successful, otherwise 1.
+>>>>>>> 2eb0d84bceca5d7d0f2c14f81f8f48668b70d7aa
  */
 int exec_builtin(char **command)
 {
