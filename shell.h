@@ -19,6 +19,7 @@ typedef struct builtin_commands
 	char *cmd;
 	void (*f)(char **command);
 } built_c;
+
 extern char **environ;
 
 /**executes*/

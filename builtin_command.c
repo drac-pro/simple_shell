@@ -21,13 +21,12 @@ void exit_shell(char **command)
  */
 void print_env(char **command)
 {
-	char **env = environ;
-	(void)command;
+	int i = 0;
+	char **envp = environ;
 
-	while (*env != NULL)
+	if (strcmp(command[0], "env") == 0)
 	{
-		write(STDOUT_FILENO, *env, strlen(*env));
-		write(STDOUT_FILENO, "\n", 1);
-		env++;
+		for (i = 0; envp[i] != NULL; i++)
+			puts(envp[i]);
 	}
 }

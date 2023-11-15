@@ -56,9 +56,10 @@ int exec_builtin(char **command)
 	for (i = 0; commands[i].cmd != NULL; i++)
 	{
 		if (strcmp(commands[i].cmd, command[0]) == 0)
+		{
 			commands[i].f(command);
+			return (0);
+		}
 	}
-	if (commands[i].cmd == NULL)
-		return (1);
-	return (0);
+	return (1);
 }
